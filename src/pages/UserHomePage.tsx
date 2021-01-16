@@ -14,17 +14,18 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Copyright from "../components/Copyright";
-import {ListItemIcon, ListItemText} from "@material-ui/core";
+import { ListItemIcon, ListItemText } from "@material-ui/core";
 import { ListItem } from "@material-ui/core";
-import {Person as PersonIcon, Dashboard as DashboardIcon} from "@material-ui/icons";
+import {
+  Person as PersonIcon,
+  Dashboard as DashboardIcon,
+} from "@material-ui/icons";
 import CapeControls from "../components/CapeControls";
 import CapePreview from "../components/CapePreview";
-import CapeSelect from "../components/CapeSelect";
 
 const drawerWidth = 240;
 
@@ -111,6 +112,7 @@ export default function UserHomePage() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [cape, setCape] = React.useState<string>("");
+  const [elytra, setElytra] = React.useState<boolean>(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -119,20 +121,20 @@ export default function UserHomePage() {
     setOpen(false);
   };
   const mainListItems = (
-      <div>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Cape Dashboard" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <PersonIcon />
-          </ListItemIcon>
-          <ListItemText primary="Account Settings" />
-        </ListItem>
-      </div>
+    <div>
+      <ListItem button>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Cape Dashboard" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <PersonIcon />
+        </ListItemIcon>
+        <ListItemText primary="Account Settings" />
+      </ListItem>
+    </div>
   );
 
   return (
@@ -186,15 +188,21 @@ export default function UserHomePage() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Settings */}
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={classes.paper}><CapeControls cape={cape} setCape={setCape} /></Paper>
+              <Paper className={classes.paper}>
+                <CapeControls
+                  cape={cape}
+                  setCape={setCape}
+                  elytra={elytra}
+                  setElytra={setElytra}
+                />
+              </Paper>
             </Grid>
-            {/* Preview Render */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={classes.paper}><CapePreview cape={cape}/></Paper>
+              <Paper className={classes.paper}>
+                <CapePreview cape={cape} elytra={elytra} />
+              </Paper>
             </Grid>
-
           </Grid>
           <Box pt={4}>
             <Copyright />

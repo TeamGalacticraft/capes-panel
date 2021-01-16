@@ -41,7 +41,21 @@ export default class SkinViewer extends Component {
 
     if (prevProps.capeUrl !== this.props.capeUrl) {
       viewer.capeUrl = this.props.capeUrl;
-      viewer.loadCape(this.props.capeUrl);
+      if (this.props.capeUrl === "") {
+        viewer.loadCape(null);
+      } else {
+        viewer.loadCape(this.props.capeUrl);
+      }
+    }
+
+    if (prevProps.elytra !== this.props.elytra) {
+      if (this.props.capeUrl !== "") {
+        if (this.props.elytra) {
+          viewer.loadCape(this.props.capeUrl, { backEquipment: "elytra" });
+        } else {
+          viewer.loadCape(this.props.capeUrl);
+        }
+      }
     }
 
     if (
@@ -99,6 +113,7 @@ SkinViewer.propTypes = {
   enableOrbitControls: PropTypes.bool,
   className: PropTypes.string,
   onReady: PropTypes.func,
+  elytra: PropTypes.bool,
   config: PropTypes.object,
 };
 
@@ -109,4 +124,5 @@ SkinViewer.defaultProps = {
   enableOrbitControls: true, // Allows for a bit more control
   onReady: () => {},
   config: null,
+  elytra: false,
 };

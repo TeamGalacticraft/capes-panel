@@ -8,13 +8,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CapePreview = ({ cape }: { cape: string }) => {
+const CapePreview = ({ cape, elytra }: { cape: string; elytra: boolean }) => {
   const classes = useStyles();
   return (
     <div className={classes.center}>
       <SkinViewer
         skinUrl="https://crafatar.com/skins/e655aa985fec4b4eb03a7cd71df90b05.png"
-        capeUrl={cape !== "" ? `/capes/${cape}.png` : null}
+        capeUrl={cape !== "" ? `/capes/${cape}.png` : ""}
+        elytra={elytra}
       />
     </div>
   );

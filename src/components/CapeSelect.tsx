@@ -51,9 +51,9 @@ export default function CapeSelect({
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={cape === "" ? "none" : cape}
+          value={cape}
           onChange={handleChange}>
-          <MenuItem value="none">None</MenuItem>
+          <MenuItem value="">None</MenuItem>
           <ListSubheader>Legacy</ListSubheader>
           <MenuItem value="legacy/capeBlue">Legacy Blue Cape</MenuItem>
           <MenuItem value="legacy/capeBrown">Legacy Brown Cape</MenuItem>
