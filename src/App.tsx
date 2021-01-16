@@ -2,9 +2,8 @@ import React from "react";
 import { Router, Route, Switch } from "react-router";
 import { createBrowserHistory } from "history";
 
-import CapePreview from "./components/CapePreview";
-import { Canvas } from "react-three-fiber";
 import UserHomePage from "./pages/UserHomePage";
+import LoginPage from "./pages/LoginPage";
 
 const browserHistory = createBrowserHistory();
 
@@ -13,7 +12,8 @@ function App() {
     <>
       <Router history={browserHistory}>
         <Switch>
-          <Route path="/" component={UserHomePage} />
+          <Route exact path="/" component={UserHomePage} />
+          <Route exact path="/login/" component={LoginPage} />
         </Switch>
       </Router>
     </>
